@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = {
   map: function(asset) {
     var slackmessage = asset.text;
