@@ -22,7 +22,7 @@ router.post('/', function(req, res) {
   console.log(req.body.text);
   console.log('********************--------------------********************');
   res.json( { 'response_type': 'in_channel',
-              'text': 'The link ' + req.body.text + ' was added successfully'
+              'text': 'The link ' + req.body.text + ' was added successfully by ' + req.body.user_name 
             });
 });
 
