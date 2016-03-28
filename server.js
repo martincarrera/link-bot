@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   console.log('********************--------------------********************');
   console.log('I found a POST');
-  console.log(req.body);
+  console.log(req.body.text);
   console.log('********************--------------------********************');
   res.json({ message: 'The link was added successfully' });
 });
