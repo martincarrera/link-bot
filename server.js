@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
   console.log('I found a POST');
   console.log(req.body);
   console.log('********************--------------------********************');
-  res.json({ message: 'Welcome to the fucking api' });  
+  res.json({ message: 'The link was added successfully' });
 });
 
 app.use('/api', router);
