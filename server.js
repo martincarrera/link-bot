@@ -1,31 +1,29 @@
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+'use strict';
+
+var config = require('./config/config');
+var port   = config.PORT;
+
+var express  = require('express');
+var app      = express();
+var mongoose = require('mongoose');
+
 var bodyParser = require('body-parser');
+var morgan     = require('morgan');
+
+var routes      = require('./routes');
+var middlewares = require('./middlewares');
+
+require('./libraries/promisify-all')(['mongoose']);
+
+mongoose.connect(config.MONGODB_URL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
-var port = process.env.PORT || 8080;        // set our port
-var router = express.Router();              // get an instance of the express Router
-
-router.get('/', function(req, res) {
-  console.log('********************--------------------********************');
-  console.log('I found a GET');
-  console.log(req.body);
-  console.log('********************--------------------********************');
-  res.json({ message: 'Welcome to the fucking api' });  
-});
-
-router.post('/', function(req, res) {
-  console.log('********************--------------------********************');
-  console.log('I found a POST');
-  console.log(req.body.text);
-  console.log('********************--------------------********************');
-  res.json( { 'response_type': 'in_channel',
-              'text': 'The link ' + req.body.text + ' was added successfully by ' + req.body.user_name 
-            });
-});
-
-app.use('/api', router);
+app.use(middlewares.cors);
+app.use('/', routes);
 
 app.listen(port);
+
+module.exports = app;
