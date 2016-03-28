@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
 app.use(middlewares.cors);
-app.use('/', routes);
+app.use('/api', routes);
 
 app.listen(port);
 
