@@ -21,7 +21,9 @@ router.post('/', function(req, res) {
   console.log('I found a POST');
   console.log(req.body.text);
   console.log('********************--------------------********************');
-  res.json({ message: 'The link was added successfully' });
+  res.json({  message: 'The link' + req.body.text + ' was added successfully',
+              response_type: 'in_channel'
+             });
 });
 
 app.use('/api', router);
