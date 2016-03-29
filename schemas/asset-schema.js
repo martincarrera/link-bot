@@ -11,7 +11,7 @@ var AssetSchema = new Schema({
     trim: true
   },
 
-  hashes: [{
+  tags: [{
     type: String,
     lowercase: true,
     trim: true

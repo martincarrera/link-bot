@@ -7,7 +7,7 @@ module.exports = {
 
     return {
       link   : content.shift(),
-      hashes : content,
+      tags : content,
       createdBy: {
         team: {
           id: asset.team_id,
