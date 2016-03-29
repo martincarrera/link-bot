@@ -57,4 +57,4 @@ AssetSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Missing', AssetSchema);
+module.exports = mongoose.model('Assets', AssetSchema);
