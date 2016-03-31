@@ -12,8 +12,14 @@ module.exports = {
         categories.push(item);
       }
     });
+    // remove categories from the array of tags.
     var tags = content.filter(function(item) {
       return categories.indexOf(item) === -1;
+    });
+
+    // remove @ of categories.
+    categories.forEach(function(item, index){
+      categories[index] = item.substr(1, item.length);
     });
 
     return {
