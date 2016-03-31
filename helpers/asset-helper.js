@@ -6,7 +6,8 @@ module.exports = {
     var content = slackmessage.split(' ');
 
     var link = content.shift();
-    var categories = content.forEach(function(item, index) {
+    var categories = [];
+    content.forEach(function(item, index) {
       if(item.charAt(0) == '@') {
         categories.push(item);
       }
