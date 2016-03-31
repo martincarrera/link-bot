@@ -5,9 +5,20 @@ module.exports = {
     var slackmessage = asset.text;
     var content = slackmessage.split(' ');
 
+    var link = content.shift();
+    var categories = content.forEach(function(item, index) {
+      if(item.charAt(0) == '@') {
+        categories.push(item);
+      }
+    });
+    var tags = content.filter(function(item) {
+      return categories.indexOf(item) === -1;
+    });
+
     return {
-      link   : content.shift(),
-      tags : content,
+      link   : link,
+      categories: categories,
+      tags : tags,
       createdBy: {
         team: {
           id: asset.team_id,
