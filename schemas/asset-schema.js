@@ -11,6 +11,12 @@ var AssetSchema = new Schema({
     trim: true
   },
 
+  categories: [{
+    type: String,
+    lowercase: true,
+    trim: true
+  }],
+
   tags: [{
     type: String,
     lowercase: true,
