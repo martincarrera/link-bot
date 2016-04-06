@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 TARGET_ENV=${1:-"dev"};
 
-
 CF_SPACE="${CF_SPACE_DEV}";
 CF_ROUTE=" --random-route";
 
