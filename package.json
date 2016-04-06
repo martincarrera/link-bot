@@ -2,8 +2,8 @@
   "name": "node-api",
   "main": "server.js",
   "engines": {
-    "node": "4.4.x",
-    "npm": "2.14.x"
+    "node": "5.10.x",
+    "npm": "3.8.x"
   },
   "scripts": {
     "preinstall": "cp scripts/pre-push .git/hooks/ || true",
