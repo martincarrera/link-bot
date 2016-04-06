@@ -1,0 +1,6 @@
+---
+applications:
+- name: link-bot
+  memory: 512M
+  services:
+    - link-bot-api
