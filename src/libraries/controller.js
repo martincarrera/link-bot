@@ -34,7 +34,6 @@ class Controller {
       if (!doc) {
         return next(404);
       }
-
       res.status(200).json(doc);
     })
     .catch(function(err) {
@@ -47,7 +46,6 @@ class Controller {
 
     this.model.create(req.body)
     .then(function(doc) {
-
       res.status(201).json(doc);
     })
     .catch(function(err) {
@@ -64,7 +62,6 @@ class Controller {
       if (!doc) {
         return next(404);
       }
-
       res.status(200).json(doc);
     })
     .catch(function(err) {
@@ -80,8 +77,7 @@ class Controller {
       if (!doc) {
         return next(404);
       }
-
-      res.sendStatus(204);
+      res.status(204).json(doc);
     })
     .catch(function(err) {
       return next(err);
