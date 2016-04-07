@@ -8,8 +8,7 @@
   "scripts": {
     "preinstall": "cp scripts/pre-push .git/hooks/ || true",
     "start": "nodemon",
-    "test": "./scripts/tests.sh",
-    "deploy": "./scripts/deploy.sh"
+    "test": "./scripts/tests.sh"
   },
   "repository": {
     "type": "git",
