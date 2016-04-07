@@ -14,7 +14,7 @@ var AssetModel = class extends Model {
    var newSchemaModel = new this.SchemaModel(assetHelper.map(input));
    if(!input.text) {
      return Promise.resolve({
-       text: 'See your saved links in http://matescript.github.io/links-front/'
+       text: 'See your saved links in http://js-tank.github.io/links-front/'
      });
    }
    return newSchemaModel.saveAsync().then(function(doc) {
