@@ -6,15 +6,13 @@ module.exports = {
     var content = slackmessage.split(' ');
 
     var link = content.shift();
-    var categories = content.filter(function (x) {
-      return x.charAt(0) == '@';
-    });
+    var categories = content.filter(x => x.charAt(0) == '@');
+
     // remove categories from the array of tags.
-    var tags = content.filter(function(item) {
-      return categories.indexOf(item) === -1;
-    });
+    var tags = content.filter(item => categories.indexOf(item) === -1);
+
     // remove @ of categories.
-    categories.forEach(function(item, index){
+    categories.forEach((item, index) => {
       categories[index] = item.substr(1, item.length);
     });
 
