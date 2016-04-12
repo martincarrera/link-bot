@@ -9,7 +9,7 @@ module.exports = {
 
     // get categories and tags removing duplicates
     var reducedContent = { categories: [], tags: [] };
-    reducedContent = content.reduce(function(x, y) {
+    reducedContent = content.reduce((x, y) => {
       var category = y.charAt(0) === '@' && y.substr(1, y.length);
       if (!category && x.tags.indexOf(y) === -1) {
         x.tags.push(y);

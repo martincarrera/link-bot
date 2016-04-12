@@ -7,14 +7,13 @@ var Asset = require('../schemas/asset-schema');
 
 var Category = require('../models/category-model');
 
-var AssetModel = class extends Model {
+class AssetModel extends Model {
   constructor(SchemaModel) {
     super(SchemaModel);
   }
 
   createFromSlack(input) {
-    var self = this;
-    
+
     if(!input.text) {
       return Promise.resolve({
         text: 'See your saved links in http://js-tank.github.io/links-front/'
@@ -22,22 +21,22 @@ var AssetModel = class extends Model {
     }
 
     var asset = assetHelper.map(input);
-    var categoriesPromise = asset.categories.map(function(category) {
+    var categoriesPromise = asset.categories.map(category => {
       return Category.findOrCreate(category);
     });
 
     return Promise.all(categoriesPromise)
-    .then(function(categories){
+    .then(categories => {
       asset.categories = categories;
-      var newSchemaModel = new self.SchemaModel(asset);
+      var newSchemaModel = new this.SchemaModel(asset);
       return newSchemaModel.saveAsync();
     })
-    .then(function(doc) {
-      return {
+    .then(doc => (
+      {
         'response_type': 'in_channel',
         text: 'The link ' + doc.link + ' was added successfully by ' + doc.createdBy.user.name
-      };
-    });
+      }
+    ));
     }
 
 };

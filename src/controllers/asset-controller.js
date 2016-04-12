@@ -3,19 +3,19 @@
 var Controller = require('../libraries/controller');
 var AssetModel = require('../models/asset-model');
 
-var AssetController = class extends Controller {
+class AssetController extends Controller {
   constructor(Model) {
     super(Model);
   }
 
   createFromSlack(req, res, next) {
     this.model.createFromSlack(req.body)
-    .then(function(doc) {
-      res.status(201).json(doc);
-    })
-    .catch(function(err) {
-      return next(err);
-    });
+      .then(doc => {
+        res.status(201).json(doc);
+      })
+      .catch(err => {
+        return next(err);
+      });
   }
 };
 
