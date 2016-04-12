@@ -7,7 +7,7 @@ var app = require('./mock.app');
 describe('Server API', function () {
   this.timeout(15000);
 
-  describe('/api', () => {
+  describe('/api/assets', () => {
     describe('POST /',  () => {
 
       const newLink = require('./newLink');
@@ -15,7 +15,7 @@ describe('Server API', function () {
 
       it('should create a new Link', done => {
         request(app)
-          .post('/api')
+          .post('/api/slack')
           .set('Accept', 'application/json')
           .send(newLink)
           .expect('Content-Type', /json/)
@@ -33,13 +33,14 @@ describe('Server API', function () {
 
       it('should create a new Link', done => {
         request(app)
-          .get('/api')
+          .get('/api/assets')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .end((err, res) => {
             res.status.should.eql(200);
             res.body.length.should.be.above(0);
-            // res.body[0].link.should.eql('https://facebook.com'); TODO: fix https getting replaced with http
+            // TODO: fix https getting replaced with http
+            res.body[0].link.should.eql('https://facebook.com');
             res.body[0].categories.length.should.be.above(0);
             res.body[0].tags.length.should.be.above(0);
 
