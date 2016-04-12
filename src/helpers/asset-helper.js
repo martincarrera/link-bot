@@ -11,11 +11,8 @@ module.exports = {
     var reducedContent = { categories: [], tags: [] };
     reducedContent = content.reduce((x, y) => {
       var category = y.charAt(0) === '@' && y.substr(1, y.length);
-      if (!category && x.tags.indexOf(y) === -1) {
-        x.tags.push(y);
-      } else if (!!category && x.categories.indexOf(category) === -1) {
-        x.categories.push(category);
-      }
+      if (!category && x.tags.indexOf(y) === -1) x.tags.push(y);
+      else if (!!category && x.categories.indexOf(category) === -1) x.categories.push(category);
       return {
         categories: x.categories,
         tags: x.tags
