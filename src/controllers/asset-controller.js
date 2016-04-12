@@ -8,10 +8,8 @@ var AssetController = class extends Controller {
     super(Model);
   }
 
-  createSlack(req, res, next) {
-    var self = this;
-
-    this.model.createSlack(req.body)
+  createFromSlack(req, res, next) {
+    this.model.createFromSlack(req.body)
     .then(function(doc) {
       res.status(201).json(doc);
     })
