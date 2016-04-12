@@ -10,7 +10,7 @@ var AssetModel = class extends Model {
     super(SchemaModel);
   }
 
-  create(input) {
+  createSlack(input) {
    var newSchemaModel = new this.SchemaModel(assetHelper.map(input));
    if(!input.text) {
      return Promise.resolve({
