@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var CategorySchema = new Schema({
 
   category: {
+    unique: true,
     type: String,
     lowercase: true,
     trim: true

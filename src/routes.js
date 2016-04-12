@@ -16,4 +16,9 @@ router.route('/assets/:id')
   .put(controllers.asset.update.bind(controllers.asset))
   .delete(controllers.asset.remove.bind(controllers.asset));
 
+router.route('/categories')
+  .get(controllers.category.find.bind(controllers.category))
+  .post(controllers.category.create.bind(controllers.category));
+
+
 module.exports = router;
