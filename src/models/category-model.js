@@ -11,7 +11,10 @@ class CategoryModel extends Model {
   findOrCreate(category){
     console.log('into findOrCreate with category ' + category);
     return this.findOne({category: category})
-      .then(cat => cat ? Promise.resolve(cat) : this.create({category: category}))
+      .then(cat => cat ?
+        Promise.resolve(cat) :
+        this.create({ category })
+      )
       .then(category => category._id);
   }
 };

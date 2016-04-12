@@ -2,7 +2,8 @@
 
 var should = require('should');
 var request = require('supertest');
-var app = require('./mock.app');
+var app = require('./helpers/mock.app');
+const newLink = require('./helpers/newLink');
 
 describe('Server API', function () {
   this.timeout(15000);
@@ -10,10 +11,7 @@ describe('Server API', function () {
   describe('/api/assets', () => {
     describe('POST /',  () => {
 
-      const newLink = require('./newLink');
-
-
-      it('should create a new Link', done => {
+      it('should create a new Asset', done => {
         request(app)
           .post('/api/slack')
           .set('Accept', 'application/json')
@@ -21,7 +19,7 @@ describe('Server API', function () {
           .expect('Content-Type', /json/)
           .end((err, res) => {
             res.status.should.eql(201);
-            res.body.text.should.eql(`The link https://facebook.com was added successfully by ${newLink.user_name}`);
+            res.body.text.should.eql(`The link https://site${newLink.suffix}.com was added successfully by ${newLink.user_name}`);
             res.body.response_type.should.eql('in_channel');
 
             done();
@@ -31,7 +29,7 @@ describe('Server API', function () {
 
     describe('GET /',  () => {
 
-      it('should create a new Link', done => {
+      it('should retreive all the assets', done => {
         request(app)
           .get('/api/assets')
           .set('Accept', 'application/json')
@@ -39,10 +37,26 @@ describe('Server API', function () {
           .end((err, res) => {
             res.status.should.eql(200);
             res.body.length.should.be.above(0);
-            // TODO: fix https getting replaced with http
-            res.body[0].link.should.eql('https://facebook.com');
-            res.body[0].categories.length.should.be.above(0);
-            res.body[0].tags.length.should.be.above(0);
+            const last = res.body.length - 1;
+            res.body[last].link.should.eql(`https://site${newLink.suffix}.com`);
+            res.body[last].categories.length.should.be.above(0);
+            res.body[last].tags.length.should.be.above(0);
+
+            const _id = res.body[last]._id;
+
+            describe('GET /api/assets/:id', () => {
+              it ('should return a single asset', done => {
+                request(app)
+                  .get(`/api/assets/${_id}`)
+                  .set('Accept', 'application/json')
+                  .expect('Content-Type', /json/)
+                  .end((err, resSingle) => {
+                    resSingle.status.should.eql(200);
+                    resSingle.body.link.should.eql(`https://site${newLink.suffix}.com`);
+                    done();
+                  });
+              })
+            });
 
             done();
           });

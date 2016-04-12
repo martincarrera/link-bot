@@ -1,3 +1,4 @@
 'use strict';
 
-require('./links.spec');
+require('./assets.spec');
+require('./categories.spec');

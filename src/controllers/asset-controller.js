@@ -10,12 +10,12 @@ class AssetController extends Controller {
 
   createFromSlack(req, res, next) {
     this.model.createFromSlack(req.body)
-    .then(doc => {
-      res.status(201).json(doc);
-    })
-    .catch(err => {
-      return next(err);
-    });
+      .then(doc => {
+        res.status(201).json(doc);
+      })
+      .catch(err => {
+        return next(err);
+      });
   }
 };
 
