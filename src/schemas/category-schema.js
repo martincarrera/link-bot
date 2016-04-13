@@ -5,8 +5,14 @@ var Schema = mongoose.Schema;
 
 var CategorySchema = new Schema({
 
-  category: {
+  name: {
     unique: true,
+    type: String,
+    lowercase: true,
+    trim: true
+  },
+
+  color: {
     type: String,
     lowercase: true,
     trim: true
