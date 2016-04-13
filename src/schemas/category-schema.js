@@ -1,5 +1,7 @@
 'use strict';
 
+var colorHelper = require('../helpers/color-helper');
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -18,6 +20,13 @@ var CategorySchema = new Schema({
     trim: true
   }
 
+});
+
+CategorySchema.pre('create', function(next) {
+  if (!this.color) {
+    this.color = colorHelper.randomColor();
+  }
+  next();
 });
 
 module.exports = mongoose.model('Category', CategorySchema);
