@@ -20,5 +20,10 @@ router.route('/categories')
   .get(controllers.category.find.bind(controllers.category))
   .post(controllers.category.create.bind(controllers.category));
 
+router.route('/categories/:id')
+  .get(controllers.category.findById.bind(controllers.category))
+  .put(controllers.category.update.bind(controllers.category))
+  .delete(controllers.category.remove.bind(controllers.category));
+
 
 module.exports = router;
