@@ -12,9 +12,13 @@ class CategoryModel extends Model {
     return this.findOne({name: category})
       .then(cat => cat ?
         Promise.resolve(cat) :
-        this.create({ category })
+        this.create({ name: category, color: this.generateRandomColor() })
       )
       .then(category => category._id);
+  }
+
+  generateRandomColor(){
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 };
 
