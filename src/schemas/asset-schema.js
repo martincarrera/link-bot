@@ -12,9 +12,8 @@ var AssetSchema = new Schema({
   },
 
   categories: [{
-    type: String,
-    lowercase: true,
-    trim: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
   }],
 
   tags: [{
@@ -63,4 +62,4 @@ AssetSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Assets', AssetSchema);
+module.exports = mongoose.model('Asset', AssetSchema);

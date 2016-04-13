@@ -8,7 +8,7 @@ module.exports = function (path, options) {
   var modules = {};
   var files = fs.readdirSync(path);
 
-  files.forEach(function (file) {
+  files.forEach(file => {
     if (/\.js$/.test(file) && file !== 'index.js') {
       var name = file;
 

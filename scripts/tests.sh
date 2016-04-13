@@ -5,6 +5,6 @@ RUN_UNIT=true istanbul cover _mocha src/tests/all.js && istanbul check-coverage 
 serverStatus=$?
 
 if [ $serverStatus -ne 0 ]; then
-  echo "Error Server Test fail.";
+ echo "Error Server Test fail.";
 fi
 exit $serverStatus;

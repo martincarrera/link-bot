@@ -25,8 +25,5 @@ function server(mongoose){
   app.use(middlewares.cors);
   app.use('/api', routes);
 
-  app.listen(config.PORT);
-  console.log(`Listening to port${config.PORT}`);
-
   return app;
 }

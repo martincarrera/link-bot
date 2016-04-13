@@ -2,27 +2,24 @@
 
 var should = require('should');
 var request = require('supertest');
-var app = require('./mock.app');
+var app = require('./helpers/mock.app');
+const newCategory = require('./helpers/newCategory');
 
 describe('Server API', function () {
   this.timeout(15000);
 
-  describe('/api', () => {
+  describe('/api/categories', () => {
     describe('POST /',  () => {
 
-      const newLink = require('./newLink');
-
-
-      it('should create a new Link', done => {
+      it('should create a new Category', done => {
         request(app)
-          .post('/api')
+          .post('/api/categories')
           .set('Accept', 'application/json')
-          .send(newLink)
+          .send({ category: newCategory.category })
           .expect('Content-Type', /json/)
           .end((err, res) => {
             res.status.should.eql(201);
-            res.body.text.should.eql(`The link https://facebook.com was added successfully by ${newLink.user_name}`);
-            res.body.response_type.should.eql('in_channel');
+            res.body.category.should.eql(newCategory.category);
 
             done();
           });
@@ -31,17 +28,16 @@ describe('Server API', function () {
 
     describe('GET /',  () => {
 
-      it('should create a new Link', done => {
+      it('should retreive all the categories', done => {
         request(app)
-          .get('/api')
+          .get('/api/categories')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
           .end((err, res) => {
             res.status.should.eql(200);
             res.body.length.should.be.above(0);
-            // res.body[0].link.should.eql('https://facebook.com'); TODO: fix https getting replaced with http
-            res.body[0].categories.length.should.be.above(0);
-            res.body[0].tags.length.should.be.above(0);
+            const last = res.body.length - 1;
+            res.body[last].category.should.eql(newCategory.category);
 
             done();
           });

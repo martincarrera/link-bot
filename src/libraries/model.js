@@ -1,6 +1,6 @@
 'use strict';
 
-var Model = class {
+class Model {
 
   constructor(SchemaModel) {
     this.SchemaModel = SchemaModel;

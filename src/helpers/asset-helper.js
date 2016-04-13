@@ -6,26 +6,23 @@ module.exports = {
     var content = slackmessage.split(' ');
 
     var link = content.shift();
-    var categories = [];
-    content.forEach(function(item, index) {
-      if(item.charAt(0) == '@') {
-        categories.push(item);
-      }
-    });
-    // remove categories from the array of tags.
-    var tags = content.filter(function(item) {
-      return categories.indexOf(item) === -1;
-    });
 
-    // remove @ of categories.
-    categories.forEach(function(item, index){
-      categories[index] = item.substr(1, item.length);
-    });
+    // get categories and tags removing duplicates
+    var reducedContent = { categories: [], tags: [] };
+    reducedContent = content.reduce((x, y) => {
+      var category = y.charAt(0) === '@' && y.substr(1, y.length);
+      if (!category && x.tags.indexOf(y) === -1) x.tags.push(y);
+      else if (!!category && x.categories.indexOf(category) === -1) x.categories.push(category);
+      return {
+        categories: x.categories,
+        tags: x.tags
+      };
+    }, reducedContent);
 
     return {
       link   : link,
-      categories: categories,
-      tags : tags,
+      categories: reducedContent.categories,
+      tags : reducedContent.tags,
       createdBy: {
         team: {
           id: asset.team_id,
