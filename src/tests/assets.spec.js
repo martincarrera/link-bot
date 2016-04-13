@@ -1,6 +1,6 @@
 'use strict';
 
-var should = require('should');
+require('should');
 
 var request = require('supertest');
 var app = require('./helpers/mock.app');
