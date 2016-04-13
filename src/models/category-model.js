@@ -1,7 +1,5 @@
 'use strict';
 
-var colorHelper = require('../helpers/color-helper');
-
 var Model = require('../libraries/model');
 var Category = require('../schemas/category-schema');
 
@@ -14,7 +12,7 @@ class CategoryModel extends Model {
     return this.findOne({name: categoryName})
       .then(cat => cat ?
         Promise.resolve(cat) :
-        this.create({ name: categoryName, color: colorHelper.randomColor() })
+        this.create({ name: categoryName })
       )
       .then(category => category._id);
   }
