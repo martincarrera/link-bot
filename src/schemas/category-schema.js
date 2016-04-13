@@ -22,7 +22,7 @@ var CategorySchema = new Schema({
 
 });
 
-CategorySchema.pre('save', function(next) {
+CategorySchema.pre('create', function(next) {
   if (!this.color) {
     this.color = colorHelper.randomColor();
   }
