@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  map: function(asset) {
+  map: function (asset) {
     var slackmessage = asset.text;
     var content = slackmessage.split(' ');
 
@@ -20,9 +20,9 @@ module.exports = {
     }, reducedContent);
 
     return {
-      link   : link,
+      link: link,
       categories: reducedContent.categories,
-      tags : reducedContent.tags,
+      tags: reducedContent.tags,
       createdBy: {
         team: {
           id: asset.team_id,

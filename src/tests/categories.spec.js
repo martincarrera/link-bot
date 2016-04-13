@@ -1,6 +1,6 @@
 'use strict';
 
-var should = require('should');
+require('should');
 var request = require('supertest');
 var app = require('./helpers/mock.app');
 const newCategory = require('./helpers/newCategory');
@@ -9,8 +9,7 @@ describe('Server API', function () {
   this.timeout(15000);
 
   describe('/api/categories', () => {
-    describe('POST /',  () => {
-
+    describe('POST /', () => {
       it('should create a new Category', done => {
         request(app)
           .post('/api/categories')
@@ -26,8 +25,7 @@ describe('Server API', function () {
       });
     });
 
-    describe('GET /',  () => {
-
+    describe('GET /', () => {
       it('should retreive all the categories', done => {
         request(app)
           .get('/api/categories')

@@ -1,6 +1,6 @@
 'use strict';
 
-var router = require('express').Router();
+var router = require('express').Router(); // eslint-disable-line new-cap
 
 var controllers = require('./controllers');
 

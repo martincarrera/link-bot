@@ -1,10 +1,10 @@
 'use strict';
 
 var fs = require('fs');
-var _  = require('lodash');
+var _ = require('lodash');
 
 module.exports = function (path, options) {
-  options = options || {};
+  const opt = options || {};
   var modules = {};
   var files = fs.readdirSync(path);
 
@@ -12,8 +12,8 @@ module.exports = function (path, options) {
     if (/\.js$/.test(file) && file !== 'index.js') {
       var name = file;
 
-      if (options.stripFromName) {
-        name = name.replace(options.stripFromName, '');
+      if (opt.stripFromName) {
+        name = name.replace(opt.stripFromName, '');
       }
 
       name = _.camelCase(name.replace(/\.js/, ''));

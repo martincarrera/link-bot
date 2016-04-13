@@ -17,6 +17,6 @@ class AssetController extends Controller {
         return next(err);
       });
   }
-};
+}
 
 module.exports = new AssetController(AssetModel);

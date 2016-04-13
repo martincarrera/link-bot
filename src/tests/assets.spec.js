@@ -1,6 +1,7 @@
 'use strict';
 
-var should = require('should');
+require('should');
+
 var request = require('supertest');
 var app = require('./helpers/mock.app');
 const newLink = require('./helpers/newLink');
@@ -9,8 +10,7 @@ describe('Server API', function () {
   this.timeout(15000);
 
   describe('/api/assets', () => {
-    describe('POST /',  () => {
-
+    describe('POST /', () => {
       it('should create a new Asset', done => {
         request(app)
           .post('/api/slack')
@@ -27,8 +27,7 @@ describe('Server API', function () {
       });
     });
 
-    describe('GET /',  () => {
-
+    describe('GET /', () => {
       it('should retreive all the assets', done => {
         request(app)
           .get('/api/assets')
@@ -45,7 +44,7 @@ describe('Server API', function () {
             const _id = res.body[last]._id;
 
             describe('GET /api/assets/:id', () => {
-              it ('should return a single asset', done => {
+              it('should return a single asset', done => {
                 request(app)
                   .get(`/api/assets/${_id}`)
                   .set('Accept', 'application/json')
@@ -55,7 +54,7 @@ describe('Server API', function () {
                     resSingle.body.link.should.eql(`https://site${newLink.suffix}.com`);
                     done();
                   });
-              })
+              });
             });
 
             done();
