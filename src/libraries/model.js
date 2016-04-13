@@ -16,7 +16,7 @@ class Model {
       throw new Error('Missing id parametter');
     }
 
-    return this.SchemaModel.findByIdAndUpdate(id, updatedModel, {new: true})
+    return this.SchemaModel.findByIdAndUpdate(id, updatedModel, { new: true })
       .execAsync();
   }
 
@@ -51,6 +51,6 @@ class Model {
     return this.SchemaModel.findByIdAndRemove(id)
       .execAsync();
   }
-};
+}
 
 module.exports = Model;

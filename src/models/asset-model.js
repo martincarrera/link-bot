@@ -13,8 +13,7 @@ class AssetModel extends Model {
   }
 
   createFromSlack(input) {
-
-    if(!input.text) {
+    if (!input.text) {
       return Promise.resolve({
         text: 'See your saved links in http://js-tank.github.io/links-front/'
       });
@@ -33,12 +32,12 @@ class AssetModel extends Model {
     })
     .then(doc => (
       {
-        'response_type': 'in_channel',
+        response_type: 'in_channel',
         text: 'The link ' + doc.link + ' was added successfully by ' + doc.createdBy.user.name
       }
     ));
-    }
+  }
 
-};
+}
 
 module.exports = new AssetModel(Asset);

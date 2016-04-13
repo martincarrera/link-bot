@@ -25,11 +25,11 @@ var AssetSchema = new Schema({
   createdBy: {
     team: {
       id: String,
-      domain: String,
+      domain: String
     },
     channel: {
       id: String,
-      name: String,
+      name: String
     },
     user: {
       id: String,
@@ -53,7 +53,7 @@ var AssetSchema = new Schema({
 
 });
 
-AssetSchema.pre('save', function(next) {
+AssetSchema.pre('save', function (next) {
   var now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {

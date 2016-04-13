@@ -7,6 +7,6 @@ class CategoryController extends Controller {
   constructor(Model) {
     super(Model);
   }
-};
+}
 
 module.exports = new CategoryController(CategoryModel);

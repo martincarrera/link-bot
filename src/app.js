@@ -2,18 +2,18 @@
 
 var config = require('./config/config');
 
-var express  = require('express');
-var app      = express();
+var express = require('express');
+var app = express();
 
 var bodyParser = require('body-parser');
-var morgan     = require('morgan');
+var morgan = require('morgan');
 
-var routes      = require('./routes');
+var routes = require('./routes');
 var middlewares = require('./middlewares');
 
 module.exports = server;
 
-function server(mongoose){
+function server(mongoose) {
   require('./libraries/promisify-all')(['mongoose']);
 
   mongoose.connect(config.MONGODB_URL);

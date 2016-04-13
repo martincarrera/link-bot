@@ -8,8 +8,8 @@ class CategoryModel extends Model {
     super(SchemaModel);
   }
 
-  findOrCreate(categoryName){
-    return this.findOne({name: categoryName})
+  findOrCreate(categoryName) {
+    return this.findOne({ name: categoryName })
       .then(category => category ?
         Promise.resolve(category) :
         this.create({ name: categoryName })
@@ -17,6 +17,6 @@ class CategoryModel extends Model {
       .then(category => category._id);
   }
 
-};
+}
 
 module.exports = new CategoryModel(Category);
