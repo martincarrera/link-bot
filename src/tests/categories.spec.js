@@ -15,11 +15,11 @@ describe('Server API', function () {
         request(app)
           .post('/api/categories')
           .set('Accept', 'application/json')
-          .send({ category: newCategory.category })
+          .send({ name: newCategory.name })
           .expect('Content-Type', /json/)
           .end((err, res) => {
             res.status.should.eql(201);
-            res.body.category.should.eql(newCategory.category);
+            res.body.name.should.eql(newCategory.name);
 
             done();
           });
@@ -37,7 +37,7 @@ describe('Server API', function () {
             res.status.should.eql(200);
             res.body.length.should.be.above(0);
             const last = res.body.length - 1;
-            res.body[last].category.should.eql(newCategory.category);
+            res.body[last].name.should.eql(newCategory.name);
 
             done();
           });
