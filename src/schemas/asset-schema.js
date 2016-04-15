@@ -11,6 +11,10 @@ var AssetSchema = new Schema({
     trim: true
   },
 
+  text: {
+    type: String
+  },
+
   categories: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'

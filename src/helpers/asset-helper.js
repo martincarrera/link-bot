@@ -7,6 +7,15 @@ module.exports = {
 
     var link = content.shift();
 
+    const cleanedLink = link
+      .replace(/^https?:\/\//ig, '')
+      .replace(/www\./, '')
+      .replace(/(?=\?).*/, '');
+
+    var text = cleanedLink.length > 30 ?
+      cleanedLink.substr(0, 27).concat('...') :
+      cleanedLink;
+
     // get categories and tags removing duplicates
     var reducedContent = { categories: [], tags: [] };
     reducedContent = content.reduce((x, y) => {
@@ -21,6 +30,7 @@ module.exports = {
 
     return {
       link: link,
+      text: text,
       categories: reducedContent.categories,
       tags: reducedContent.tags,
       createdBy: {
