@@ -25,5 +25,13 @@ router.route('/categories/:id')
   .put(controllers.category.update.bind(controllers.category))
   .delete(controllers.category.remove.bind(controllers.category));
 
+router.route('/users')
+  .get(controllers.user.find.bind(controllers.user))
+  .post(controllers.user.create.bind(controllers.user));
+
+router.route('/users/:id')
+  .get(controllers.user.findById.bind(controllers.user))
+  .put(controllers.user.update.bind(controllers.user))
+  .delete(controllers.user.remove.bind(controllers.user));
 
 module.exports = router;
