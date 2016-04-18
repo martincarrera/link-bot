@@ -9,7 +9,7 @@ class CategoryModel extends Model {
   }
 
   findOrCreate(categoryName) {
-    return this.findOne({ name: categoryName })
+    return this.findOne({ name: categoryName.toLowerCase() })
       .then(category => category ?
         Promise.resolve(category) :
         this.create({ name: categoryName })
