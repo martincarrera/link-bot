@@ -8,7 +8,8 @@
   "scripts": {
     "preinstall": "cp scripts/pre-push .git/hooks/ || true",
     "start": "nodemon",
-    "test": "./scripts/tests.sh"
+    "test": "istanbul cover node_modules/mocha/bin/_mocha src/tests/all.js && istanbul check-coverage --statement 50 --line 50 --branch 30 --function 50",
+    "prepush": "npm run test"
   },
   "repository": {
     "type": "git",
