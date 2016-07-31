@@ -9,6 +9,8 @@
     "preinstall": "cp scripts/pre-push .git/hooks/ || true",
     "start": "nodemon",
     "test": "istanbul cover node_modules/mocha/bin/_mocha src/tests/all.js && istanbul check-coverage --statement 50 --line 50 --branch 30 --function 50",
+    "eslint": "eslint src/**/*.js",
+    "precommit": "npm run eslint",
     "prepush": "npm run test"
   },
   "repository": {
