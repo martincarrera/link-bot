@@ -33,18 +33,19 @@ module.exports = {
     "no-console": 0,
   },
   "globals": {
-    "angular": true,
-    "it": true,
-    "describe": true,
-    "$": true,
-    "wow": true,
-    "WOW": true,
-    "Wow": true,
-    "beforeEach": true,
-    "$q": true,
-    "spyOn": true,
-    "expect": true,
-    "afterEach": true,
-    "Promise": true
+    "test": false,
+    "angular": false,
+    "it": false,
+    "describe": false,
+    "$": false,
+    "wow": false,
+    "WOW": false,
+    "Wow": false,
+    "beforeEach": false,
+    "$q": false,
+    "spyOn": false,
+    "expect": false,
+    "afterEach": false,
+    "Promise": false
   }
 };
