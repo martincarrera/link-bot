@@ -1,0 +1,5 @@
+exports[`/api/assets GET / & GET /:id should retreive all the assets & should retreive an asset by id 1`] = `"https://sitelink.com"`;
+
+exports[`/api/assets GET / & GET /:id should retreive all the assets & should retreive an asset by id 2`] = `"https://sitelink.com"`;
+
+exports[`/api/assets POST / should create a new Asset 1`] = `"The link https://sitelink.com was added successfully by someonelink"`;

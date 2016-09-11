@@ -1,4 +1,4 @@
-const suffix = Math.floor(Math.random() * Math.pow(10, 5));
+const suffix = 'link';
 
 module.exports = {
   text: `https://site${suffix}.com @category${suffix} tag${suffix}`,
