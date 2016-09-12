@@ -7,8 +7,9 @@
   },
   "scripts": {
     "preinstall": "cp scripts/pre-push .git/hooks/ || true",
+    "test:watch": "jest --watch",
     "start": "nodemon",
-    "test": "jest --coverage",
+    "test": "./scripts/test.sh",
     "eslint": "eslint src/**/*.js",
     "precommit": "npm run eslint",
     "prepush": "npm run test"
