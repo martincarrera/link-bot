@@ -1,4 +1,4 @@
-const suffix = Math.floor(Math.random() * Math.pow(10, 5));
+const suffix = 'category';
 
 module.exports = {
   name: `some-category-${suffix}`,

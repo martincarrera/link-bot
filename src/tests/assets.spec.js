@@ -1,65 +1,54 @@
-'use strict';
-
-require('should');
-
-var request = require('supertest');
-var app = require('./helpers/mock.app');
+const app = require('./helpers/mock.app');
+const request = require('promisify-supertest')(app);
 const newLink = require('./helpers/newLink');
 
-describe('Server API', function () {
-  this.timeout(15000);
-
-  describe('/api/assets', () => {
-    describe('POST /', () => {
-      it('should create a new Asset', done => {
-        request(app)
-          .post('/api/slack')
-          .set('Accept', 'application/json')
-          .send(newLink)
-          .expect('Content-Type', /json/)
-          .end((err, res) => {
-            res.status.should.eql(201);
-            res.body.text.should.eql(`The link https://site${newLink.suffix}.com was added successfully by ${newLink.user_name}`);
-            res.body.response_type.should.eql('in_channel');
-
-            done();
-          });
-      });
+describe('/api/assets', () => {
+  describe('POST /', () => {
+    it('should create a new Asset', () => {
+      return request
+        .post('/api/slack')
+        .set('Accept', 'application/json')
+        .send(newLink)
+        .expect('Content-Type', /json/)
+        .end()
+        .then(res => {
+          expect(res.status).toBe(201);
+          expect(res.body.response_type).toBe('in_channel');
+          const actual = res.body.text;
+          expect(actual).toMatchSnapshot();
+        });
     });
+  });
 
-    describe('GET /', () => {
-      it('should retreive all the assets', done => {
-        request(app)
-          .get('/api/assets')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .end((err, res) => {
-            res.status.should.eql(200);
-            res.body.length.should.be.above(0);
-            const last = res.body.length - 1;
-            res.body[last].link.should.eql(`https://site${newLink.suffix}.com`);
-            res.body[last].categories.length.should.be.above(0);
-            res.body[last].tags.length.should.be.above(0);
+  describe('GET / & GET /:id', () => {
+    it('should retreive all the assets & should retreive an asset by id', () => {
+      return request
+        .get('/api/assets')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .end()
+        .then(res => {
+          expect(res.status).toBe(200);
+          expect(res.body.length).toBeGreaterThan(0);
+          const last = res.body.length - 1;
+          expect(res.body[last].link).toMatchSnapshot();
+          expect(res.body[last].categories.length).toBeGreaterThan(0);
+          expect(res.body[last].tags.length).toBeGreaterThan(0);
 
-            const _id = res.body[last]._id;
-
-            describe('GET /api/assets/:id', () => {
-              it('should return a single asset', done => {
-                request(app)
-                  .get(`/api/assets/${_id}`)
-                  .set('Accept', 'application/json')
-                  .expect('Content-Type', /json/)
-                  .end((err, resSingle) => {
-                    resSingle.status.should.eql(200);
-                    resSingle.body.link.should.eql(`https://site${newLink.suffix}.com`);
-                    done();
-                  });
-              });
+          const _id = res.body[last]._id;
+          return _id;
+        })
+        .then(_id => {
+          return request
+            .get(`/api/assets/${_id}`)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .end()
+            .then(resSingle => {
+              expect(resSingle.status).toBe(200);
+              expect(resSingle.body.link).toMatchSnapshot();
             });
-
-            done();
-          });
-      });
+        });
     });
   });
 });
